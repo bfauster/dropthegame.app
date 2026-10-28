@@ -21,7 +21,7 @@
   <main>
     <section class="card" id="en" lang="en">
       <h1>Privacy Policy</h1>
-      <p class="meta">Last updated: 28 October 2026 · applies to the app “DROP!” (Android, package name com.vsterstudio.drop), the web version of the game and the website dropthegame.app.</p>
+      <p class="meta">Last updated: 29 October 2026 · applies to the app “DROP!” (Android, package name com.vsterstudio.drop), the web version of the game and the website dropthegame.app.</p>
 
       <div class="summary">
         <h3>In short</h3>
@@ -29,7 +29,7 @@
           <li>Your game progress (career, statistics, achievements, crowns, look, settings) is stored <strong>only on your device</strong>.</li>
           <li>For the <strong>Daily Drop online leaderboard</strong>, the game automatically creates an anonymous guest account. A random account ID, your player name (or a random name) and your Daily results are stored on a server in the EU. Name, score and rank are visible to other players.</li>
           <li>The Android app shows <strong>ads via Google AdMob</strong>. Personalised ads are only shown with your consent, which you can change at any time. After buying “Remove Ads”, no ads are loaded.</li>
-          <li>We use <strong>no analytics or tracking services</strong> and we do not sell data. This website sets no cookies.</li>
+          <li>With the setting <strong>USAGE DATA</strong> (on by default, can be turned off), the Android app sends <strong>error reports and stats about your first steps</strong> to our own server. We use <strong>no third-party analytics or tracking services</strong> and we do not sell data. This website sets no cookies.</li>
         </ul>
       </div>
 
@@ -49,11 +49,12 @@
         <li>career save, statistics, high scores, achievements, Daily Drop and training progress</li>
         <li>crowns, unlocked and purchased cosmetics, your character’s look</li>
         <li>the optional player name you choose</li>
-        <li>settings (sound, music, vibration) and tutorial status</li>
+        <li>settings (sound, music, vibration, usage data) and tutorial status</li>
         <li>a counter for how often ads were shown and your “ad-free” status</li>
         <li>the game settings last downloaded from the server (see section 3)</li>
+        <li>error reports and first-steps stats that have not been sent yet (see section 8)</li>
       </ul>
-      <p>We do not receive this data – except for the data needed for the online leaderboard described in section 3. Uninstalling the app or clearing your browser’s site data removes it. This storage is strictly necessary to provide the game (Art. 6(1)(b) GDPR and Section 165(3) of the Austrian Telecommunications Act 2021, which does not require consent for strictly necessary storage).</p>
+      <p>We do not receive this data – except for the data described in sections 3 and 8. Uninstalling the app or clearing your browser’s site data removes it. This storage is strictly necessary to provide the game (Art. 6(1)(b) GDPR and Section 165(3) of the Austrian Telecommunications Act 2021, which does not require consent for strictly necessary storage).</p>
 
       <h2>3. Online features: guest account and Daily leaderboard</h2>
       <h3>What happens?</h3>
@@ -110,14 +111,26 @@
 
       <h2>7. Android app permissions</h2>
       <ul>
-        <li><strong>Internet:</strong> for the online leaderboard, game settings, ads and in-app purchase.</li>
+        <li><strong>Internet:</strong> for the online leaderboard, game settings, error reports and usage stats, ads and in-app purchase.</li>
         <li><strong>Vibration:</strong> for haptic feedback in the game (can be turned off in the settings).</li>
         <li><strong>Advertising ID</strong> (via the Google Mobile Ads SDK): for ads only, see section 4.</li>
       </ul>
       <p>The app does not access your camera, microphone, location (GPS), contacts or files outside its own storage area.</p>
 
-      <h2>8. No analytics, no profiling by us</h2>
-      <p>We do not use any analytics, statistics or tracking tools and do not create user profiles. There is no automated decision-making within the meaning of Art. 22 GDPR. Plausibility checks of submitted scores only serve to protect the leaderboard against manipulation.</p>
+      <h2>8. Error reports and first-steps stats</h2>
+      <h3>What happens?</h3>
+      <p>To find bugs and to see where new players get stuck, the store version of the app sends the following to our own server (Supabase, see section 3) via your guest account, as long as <strong>Settings → USAGE DATA</strong> is on (default):</p>
+      <ul>
+        <li><strong>Error reports:</strong> the error message, the place in the game code where it occurred, a technical call stack, how often the same error occurred, the app version and the operating system name (e.g. “Android”). Before sending, the game removes folder paths and user names of your device from the texts. Each error is sent at most once per app version.</li>
+        <li><strong>First-steps stats:</strong> once per installation and step, which of these steps you reached and how many seconds after the first start: first start, tutorial started / first tutorial jump / tutorial completed or skipped, career started, first jump, first league round, first promotion, first Daily Drop, first training jump, return on a later day and after a week – plus app version and operating system name.</li>
+      </ul>
+      <p>We do not collect any other usage data, do not track what you do in the game beyond these steps, do not create user profiles and do not combine this data with advertising data. Players who installed the game before this feature was added are not measured. The web version and test builds send nothing.</p>
+      <h3>Purpose and legal basis</h3>
+      <p>Fixing errors and improving the game for new players, based on our legitimate interest in a stable, easy-to-learn game (Art. 6(1)(f) GDPR). You can <strong>object at any time</strong> by turning off Settings → USAGE DATA; the game then discards anything not yet sent and stops collecting.</p>
+      <h3>Retention</h3>
+      <p>The server automatically deletes error reports after 90 days and first-steps stats after 180 days. Both are deleted together with your guest account (see <a href="../delete-account/">Delete account</a>).</p>
+      <h3>No automated decisions</h3>
+      <p>There is no automated decision-making within the meaning of Art. 22 GDPR. Plausibility checks of submitted scores only serve to protect the leaderboard against manipulation.</p>
 
       <h2>9. Children</h2>
       <p>The game is not specifically directed at children under 13. If you are a parent or guardian and become aware that your child has provided us with personal data without your consent, please contact us and we will delete the data promptly.</p>
