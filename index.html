@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DROP! – Coming soon</title>
+  <meta name="description" content="DROP! – Jump. Fall. Open late. Land first. A skydiving arcade game for Android.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: #fff;
+      background: linear-gradient(180deg, #1d6fd1 0%, #4fa3ec 55%, #bfe4ff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 16px;
+    }
+    .cloud {
+      position: absolute;
+      background: #fff;
+      border-radius: 999px;
+      opacity: 0.85;
+    }
+    .cloud::before, .cloud::after {
+      content: "";
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+    }
+    .cloud::before { width: 50%; height: 160%; left: 15%; bottom: 20%; }
+    .cloud::after  { width: 35%; height: 120%; right: 15%; bottom: 25%; }
+    .c1 { width: 160px; height: 44px; top: 12%; left: 8%; }
+    .c2 { width: 220px; height: 56px; top: 70%; right: 6%; }
+    .c3 { width: 120px; height: 34px; top: 82%; left: 18%; opacity: 0.6; }
+    main { position: relative; z-index: 1; }
+    h1 {
+      font-size: clamp(64px, 18vw, 140px);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.18);
+    }
+    .tagline {
+      font-size: clamp(18px, 4.5vw, 26px);
+      font-weight: 700;
+      margin-top: 8px;
+    }
+    .soon {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 12px 28px;
+      border-radius: 999px;
+      background: #2bb24c;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 0 #1d7f35;
+    }
+    footer {
+      position: fixed;
+      bottom: 16px;
+      left: 0;
+      right: 0;
+      font-size: 14px;
+      color: rgba(0, 40, 80, 0.7);
+    }
+    footer a { color: inherit; }
+  </style>
+</head>
+<body>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+
+  <main>
+    <h1>DROP!</h1>
+    <p class="tagline">Jump. Fall. Open late. Land first.</p>
+    <p class="soon">COMING SOON TO ANDROID</p>
+  </main>
+
+  <footer>
+    &copy; 2026 DROP! · <a href="mailto:support@dropthegame.app">support@dropthegame.app</a>
+  </footer>
+</body>
+</html>
