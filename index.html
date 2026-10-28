@@ -3,27 +3,49 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DROP! – Coming soon</title>
-  <meta name="description" content="DROP! – Jump. Fall. Open late. Land first. A skydiving arcade game for Android.">
+  <title>DROP! – Rule the Sky</title>
+  <meta name="description" content="DROP! is a skydiving arcade game: jump on GO, fall as long as you dare, open late and land first. Climb six leagues and beat the KING of the Sky.">
+  <meta name="theme-color" content="#1d6fd1">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/icon-32.png">
+  <link rel="apple-touch-icon" href="img/icon-180.png">
+  <meta property="og:title" content="DROP! – Rule the Sky">
+  <meta property="og:description" content="Jump. Fall. Open late. Land first. A skydiving arcade game for Android.">
+  <meta property="og:image" content="https://dropthegame.app/img/icon-512.png">
+  <meta property="og:url" content="https://dropthegame.app/">
+  <meta property="og:type" content="website">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      color: #fff;
-      background: linear-gradient(180deg, #1d6fd1 0%, #4fa3ec 55%, #bfe4ff 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-      padding: 16px;
+    :root {
+      --sky-top: #1556c4;
+      --sky-mid: #3f97ea;
+      --sky-low: #bfe4ff;
+      --navy: #0f2a5c;
+      --navy-soft: rgba(15, 42, 92, 0.86);
+      --gold: #ffd23a;
+      --green: #2bb24c;
+      --green-dark: #1d7f35;
+      --white: #ffffff;
     }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--white);
+      background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 45%, var(--sky-low) 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+
+    /* Wolken im Hintergrund */
+    .clouds { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
     .cloud {
       position: absolute;
       background: #fff;
       border-radius: 999px;
-      opacity: 0.85;
+      opacity: 0.7;
+      animation: drift 60s linear infinite;
     }
     .cloud::before, .cloud::after {
       content: "";
@@ -33,56 +55,214 @@
     }
     .cloud::before { width: 50%; height: 160%; left: 15%; bottom: 20%; }
     .cloud::after  { width: 35%; height: 120%; right: 15%; bottom: 25%; }
-    .c1 { width: 160px; height: 44px; top: 12%; left: 8%; }
-    .c2 { width: 220px; height: 56px; top: 70%; right: 6%; }
-    .c3 { width: 120px; height: 34px; top: 82%; left: 18%; opacity: 0.6; }
-    main { position: relative; z-index: 1; }
-    h1 {
-      font-size: clamp(64px, 18vw, 140px);
+    .c1 { width: 180px; height: 48px; top: 10%; left: -5%; animation-duration: 70s; }
+    .c2 { width: 240px; height: 60px; top: 55%; left: 60%; animation-duration: 90s; animation-delay: -40s; }
+    .c3 { width: 130px; height: 36px; top: 80%; left: 20%; opacity: 0.5; animation-duration: 80s; animation-delay: -20s; }
+    .c4 { width: 160px; height: 42px; top: 30%; left: 80%; opacity: 0.55; animation-duration: 100s; animation-delay: -60s; }
+    @keyframes drift {
+      from { transform: translateX(-30vw); }
+      to   { transform: translateX(130vw); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cloud { animation: none; }
+      .hero-logo { animation: none !important; }
+    }
+
+    .wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+    /* Hero */
+    .hero { text-align: center; padding: 48px 0 32px; }
+    .hero-logo {
+      width: min(340px, 78vw);
+      margin: 0 auto;
+      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25));
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .headline {
+      margin-top: 12px;
+      font-size: clamp(34px, 8vw, 64px);
       font-weight: 900;
-      letter-spacing: 2px;
-      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.18);
-    }
-    .tagline {
-      font-size: clamp(18px, 4.5vw, 26px);
-      font-weight: 700;
-      margin-top: 8px;
-    }
-    .soon {
-      display: inline-block;
-      margin-top: 28px;
-      padding: 12px 28px;
-      border-radius: 999px;
-      background: #2bb24c;
-      font-weight: 800;
-      font-size: 20px;
+      line-height: 1.05;
       letter-spacing: 1px;
-      box-shadow: 0 4px 0 #1d7f35;
+      text-transform: uppercase;
+      text-shadow: 0 4px 0 rgba(15, 42, 92, 0.45);
     }
+    .headline span { color: var(--gold); }
+    .tagline {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: var(--navy-soft);
+      font-size: clamp(16px, 3.8vw, 21px);
+      font-weight: 700;
+    }
+    .tagline span { color: var(--gold); }
+    .cta { margin-top: 28px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .btn-primary { background: var(--green); box-shadow: 0 5px 0 var(--green-dark); }
+    .btn-secondary { background: var(--navy-soft); box-shadow: 0 5px 0 rgba(0, 0, 0, 0.25); }
+
+    /* Screenshots */
+    .shots {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 24px 16px 28px;
+      margin: 0 -16px;
+      scrollbar-width: none;
+    }
+    .shots::-webkit-scrollbar { display: none; }
+    .shots img {
+      flex: 0 0 auto;
+      width: min(260px, 68vw);
+      border-radius: 22px;
+      box-shadow: 0 12px 28px rgba(15, 42, 92, 0.35);
+      scroll-snap-align: center;
+    }
+    @media (min-width: 1100px) {
+      .shots { justify-content: center; overflow-x: visible; }
+      .shots img { width: 196px; transition: transform 0.2s; }
+      .shots img:hover { transform: translateY(-8px) rotate(-1deg); }
+    }
+
+    /* Features */
+    .section-title {
+      text-align: center;
+      font-size: clamp(26px, 5vw, 38px);
+      font-weight: 900;
+      text-transform: uppercase;
+      margin: 32px 0 20px;
+      text-shadow: 0 3px 0 rgba(15, 42, 92, 0.4);
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--navy-soft);
+      border-radius: 20px;
+      padding: 22px 20px;
+      border: 2px solid rgba(255, 255, 255, 0.12);
+    }
+    .card .icon { font-size: 34px; line-height: 1; }
+    .card h3 {
+      margin-top: 10px;
+      font-size: 20px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .card p { margin-top: 8px; font-size: 16px; line-height: 1.5; color: rgba(255, 255, 255, 0.88); }
+
+    /* So funktioniert's */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      text-align: center;
+    }
+    .step {
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--navy);
+      border-radius: 18px;
+      padding: 18px 12px;
+      box-shadow: 0 6px 0 rgba(15, 42, 92, 0.18);
+    }
+    .step b { display: block; font-size: 26px; font-weight: 900; }
+    .step span { font-size: 15px; font-weight: 600; }
+
+    /* Footer */
     footer {
-      position: fixed;
-      bottom: 16px;
-      left: 0;
-      right: 0;
-      font-size: 14px;
-      color: rgba(0, 40, 80, 0.7);
+      margin-top: 56px;
+      padding: 28px 0 36px;
+      text-align: center;
+      color: var(--navy);
+      font-size: 15px;
     }
-    footer a { color: inherit; }
+    footer .links { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; font-weight: 700; }
   </style>
 </head>
 <body>
-  <div class="cloud c1"></div>
-  <div class="cloud c2"></div>
-  <div class="cloud c3"></div>
+  <div class="clouds" aria-hidden="true">
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="cloud c3"></div>
+    <div class="cloud c4"></div>
+  </div>
 
-  <main>
-    <h1>DROP!</h1>
-    <p class="tagline">Jump. Fall. Open late. Land first.</p>
-    <p class="soon">COMING SOON TO ANDROID</p>
-  </main>
+  <div class="wrap">
+    <header class="hero">
+      <img class="hero-logo" src="img/logo.webp" width="432" height="432" alt="DROP! logo with a colorful parachute">
+      <h1 class="headline">Rule the <span>Sky</span></h1>
+      <p class="tagline">Jump. Fall. Open late. <span>Land first.</span></p>
+      <div class="cta">
+        <span class="btn btn-primary">Coming soon to Android</span>
+        <a class="btn btn-secondary" href="#features">Learn more</a>
+      </div>
+    </header>
 
-  <footer>
-    &copy; 2026 DROP! · <a href="mailto:support@dropthegame.app">support@dropthegame.app</a>
-  </footer>
+    <section class="shots" aria-label="Screenshots">
+      <img src="img/shot-1.webp" width="720" height="1279" loading="lazy" alt="Main menu: start your career, Daily Drop and Training">
+      <img src="img/shot-2.webp" width="720" height="1279" loading="lazy" alt="Free fall against your rivals and the KING">
+      <img src="img/shot-3.webp" width="720" height="1279" loading="lazy" alt="Parachutes open above snowy mountains">
+      <img src="img/shot-4.webp" width="720" height="1279" loading="lazy" alt="READY: four jumpers on their platforms">
+      <img src="img/shot-5.webp" width="720" height="1279" loading="lazy" alt="PROMOTED! First place in the Gold League">
+    </section>
+
+    <h2 class="section-title">How to play</h2>
+    <div class="steps">
+      <div class="step"><b>1 · GO!</b><span>Tap the moment the signal fires.</span></div>
+      <div class="step"><b>2 · FALL</b><span>Drop as long as you dare.</span></div>
+      <div class="step"><b>3 · OPEN</b><span>Pull the chute late – but not too late.</span></div>
+      <div class="step"><b>4 · LAND</b><span>Touch down first and safe to win.</span></div>
+    </div>
+
+    <h2 class="section-title" id="features">Features</h2>
+    <div class="features">
+      <div class="card">
+        <div class="icon" aria-hidden="true">👑</div>
+        <h3>Career to the KING</h3>
+        <p>Climb six leagues in 5-jump rounds, earn promotion and challenge the KING of the Sky. Easy, Hard and Extreme.</p>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">📅</div>
+        <h3>Daily Drop</h3>
+        <p>A new challenge every day with a twist – fog, gusts, night drops – and an online leaderboard.</p>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">🎨</div>
+        <h3>Your jumper</h3>
+        <p>Hairstyles, glasses, hats and parachute skins. Earn crowns and unlock exclusive items.</p>
+      </div>
+      <div class="card">
+        <div class="icon" aria-hidden="true">🎯</div>
+        <h3>Training</h3>
+        <p>Practice any height, analyze every jump and find your perfect opening.</p>
+      </div>
+    </div>
+
+    <footer>
+      <div class="links">
+        <a href="mailto:support@dropthegame.app">support@dropthegame.app</a>
+      </div>
+      <p>&copy; 2026 DROP!</p>
+    </footer>
+  </div>
 </body>
 </html>
