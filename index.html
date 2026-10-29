@@ -116,6 +116,20 @@
     .btn-primary { background: var(--green); box-shadow: 0 5px 0 var(--green-dark); }
     .btn-secondary { background: var(--navy-soft); box-shadow: 0 5px 0 rgba(0, 0, 0, 0.25); }
 
+    /* Teaser-Video (Hochformat 1080 × 1920, lädt erst beim Abspielen) */
+    .teaser { display: flex; justify-content: center; padding-top: 8px; }
+    .teaser video {
+      display: block;
+      width: min(320px, 78vw);
+      aspect-ratio: 9 / 16;
+      height: auto;
+      border-radius: 26px;
+      background: var(--navy);
+      border: 4px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 16px 34px rgba(15, 42, 92, 0.4);
+      object-fit: cover;
+    }
+
     /* Screenshots */
     .shots {
       display: flex;
@@ -213,9 +227,16 @@
       <p class="tagline">Jump. Fall. Open late. <span>Land first.</span></p>
       <div class="cta">
         <span class="btn btn-primary">Coming soon to Android</span>
-        <a class="btn btn-secondary" href="#features">Learn more</a>
+        <a class="btn btn-secondary" href="#teaser">Watch teaser</a>
       </div>
     </header>
+
+    <h2 class="section-title" id="teaser">Watch the teaser</h2>
+    <section class="teaser">
+      <video controls playsinline preload="none" poster="img/shot-2.webp" width="1080" height="1920" aria-label="DROP! teaser video">
+        <source src="video/teaser.mp4" type="video/mp4">
+      </video>
+    </section>
 
     <section class="shots" aria-label="Screenshots">
       <img src="img/shot-1.webp" width="720" height="1279" loading="lazy" alt="Main menu: start your career, Daily Drop and Training">
