@@ -116,18 +116,23 @@
     .btn-primary { background: var(--green); box-shadow: 0 5px 0 var(--green-dark); }
     .btn-secondary { background: var(--navy-soft); box-shadow: 0 5px 0 rgba(0, 0, 0, 0.25); }
 
-    /* Teaser-Video (Hochformat 1080 × 1920, lädt erst beim Abspielen) */
+    /* Teaser-Video: Handy/schmal = Hochformat, breiter Bildschirm im Querformat = Querformat.
+       Beide laden erst beim Abspielen (preload="none"). */
     .teaser { display: flex; justify-content: center; padding-top: 8px; }
     .teaser video {
       display: block;
-      width: min(320px, 78vw);
-      aspect-ratio: 9 / 16;
       height: auto;
       border-radius: 26px;
       background: var(--navy);
       border: 4px solid rgba(255, 255, 255, 0.85);
       box-shadow: 0 16px 34px rgba(15, 42, 92, 0.4);
-      object-fit: cover;
+      object-fit: contain; /* im Vollbild nichts abschneiden */
+    }
+    .teaser .portrait { width: min(320px, 78vw); aspect-ratio: 9 / 16; }
+    .teaser .landscape { display: none; width: min(960px, 100%); aspect-ratio: 16 / 9; }
+    @media (min-width: 900px) and (orientation: landscape) {
+      .teaser .portrait { display: none; }
+      .teaser .landscape { display: block; }
     }
 
     /* Screenshots */
@@ -233,8 +238,11 @@
 
     <h2 class="section-title" id="teaser">Watch the teaser</h2>
     <section class="teaser">
-      <video controls playsinline preload="none" poster="img/shot-2.webp" width="1080" height="1920" aria-label="DROP! teaser video">
+      <video class="portrait" controls playsinline preload="none" poster="img/shot-2.webp" width="1080" height="1920" aria-label="DROP! teaser video">
         <source src="video/teaser.mp4" type="video/mp4">
+      </video>
+      <video class="landscape" controls playsinline preload="none" poster="img/teaser-landscape.jpg" width="1920" height="1080" aria-label="DROP! teaser video">
+        <source src="video/teaser-landscape.mp4" type="video/mp4">
       </video>
     </section>
 
@@ -288,5 +296,13 @@
       <p>&copy; 2026 DROP!</p>
     </footer>
   </div>
+  <script>
+    // Wechselt die Ansicht (Drehen, Fenstergröße), stoppt das nun verborgene Video.
+    document.querySelectorAll(".teaser video").forEach(function (v) {
+      window.addEventListener("resize", function () {
+        if (!v.offsetParent && !v.paused) v.pause();
+      });
+    });
+  </script>
 </body>
 </html>
