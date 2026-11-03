@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DROP! – Add me as a friend</title>
+  <meta name="description" content="Your friend invited you to DROP!. Add their friend code and compare your Daily Drop scores.">
+  <meta name="theme-color" content="#1d6fd1">
+  <meta name="robots" content="noindex">
+  <meta property="og:title" content="Add me as a friend in DROP!">
+  <meta property="og:description" content="Tap to add my friend code and beat my Daily Drop score.">
+  <meta property="og:image" content="https://dropthegame.app/img/icon-512.png">
+  <meta property="og:url" content="https://dropthegame.app/friend/">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/icon-32.png">
+  <link rel="stylesheet" href="../legal.css">
+  <style>
+    /* Freundes-Seite (Ziel des Teilen-Links aus dem Spiel, ?c=CODE). Öffnet DROP! direkt, wenn installiert (Android App Links). */
+    .friend { text-align: center; }
+    .friend h1 { margin-top: 24px; }
+    .code {
+      display: inline-block;
+      margin: 18px 0 6px;
+      padding: 10px 26px;
+      border-radius: 18px;
+      background: #0f2a5c;
+      color: var(--gold);
+      font: 900 clamp(34px, 11vw, 52px)/1.2 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      letter-spacing: 4px;
+    }
+    .actions { display: flex; flex-direction: column; gap: 14px; align-items: center; margin: 22px 0 6px; }
+    .btn {
+      display: inline-block;
+      min-width: 260px;
+      padding: 14px 28px;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      font: 800 18px/1.2 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      letter-spacing: 1px;
+      text-decoration: none;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .btn-primary { background: #2bb24c; box-shadow: 0 5px 0 #1d7f35; }
+    .btn-secondary { background: rgba(15, 42, 92, 0.86); box-shadow: 0 5px 0 rgba(0, 0, 0, 0.25); }
+    .btn[hidden] { display: none; }
+    .steps { text-align: left; max-width: 440px; margin: 18px auto 0; }
+    .hint { color: var(--muted); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <a class="home" href="../"><img src="../img/logo.webp" width="432" height="432" alt="">DROP!</a>
+  </div>
+
+  <main>
+    <section class="card friend">
+      <div id="valid" hidden>
+        <h1>You're invited to DROP!</h1>
+        <p>Add this friend code and compare your Daily Drop scores every day.</p>
+        <div class="code" id="code">···-···</div>
+        <div class="actions">
+          <a class="btn btn-primary" id="open" href="#" hidden>Open in DROP!</a>
+          <button class="btn btn-secondary" id="copy" type="button">Copy code</button>
+          <a class="btn btn-secondary" id="store" href="https://play.google.com/store/apps/details?id=com.vsterstudio.drop">Get it on Google Play</a>
+        </div>
+        <p class="hint">iOS version coming soon.</p>
+        <h2>How to add the code</h2>
+        <ol class="steps">
+          <li>Install DROP! and open it.</li>
+          <li>Open <strong>Daily Drop</strong>, switch the leaderboard to <strong>FRIENDS</strong> and tap <strong>MANAGE FRIENDS</strong>.</li>
+          <li>Tap <strong>PASTE</strong> (after copying the code) or type it in, then tap <strong>ADD</strong>.</li>
+        </ol>
+      </div>
+      <div id="invalid" hidden>
+        <h1>Friend code missing</h1>
+        <p>This link doesn't contain a valid friend code. Ask your friend to share it again from the game.</p>
+        <div class="actions">
+          <a class="btn btn-secondary" href="../">About DROP!</a>
+        </div>
+      </div>
+      <noscript><p>Please turn on JavaScript to see the friend code.</p></noscript>
+    </section>
+  </main>
+
+  <footer>
+    <a href="../">Home</a> · <a href="../privacy/">Privacy</a> · <a href="../imprint/">Imprint</a>
+  </footer>
+
+  <script>
+    // Gleiches Alphabet wie FriendCode.ALPHABET im Spiel (ohne 0/O/1/I/L), 6 Zeichen, Anzeige "VJJ-3P7".
+    (function () {
+      var ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+      var PACKAGE = "com.vsterstudio.drop";
+      var raw = (new URLSearchParams(location.search).get("c") || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+      var valid = raw.length === 6 && raw.split("").every(function (ch) { return ALPHABET.indexOf(ch) >= 0; });
+      document.getElementById(valid ? "valid" : "invalid").hidden = false;
+      if (!valid) return;
+      var shown = raw.slice(0, 3) + "-" + raw.slice(3);
+      document.getElementById("code").textContent = shown;
+      document.title = "DROP! – Friend code " + shown;
+
+      // Android: ist DROP! installiert, öffnet der Intent das Spiel mit dem Code, sonst den Play Store.
+      if (/Android/i.test(navigator.userAgent)) {
+        var store = document.getElementById("store").href;
+        var open = document.getElementById("open");
+        open.href = "intent://dropthegame.app/friend/?c=" + raw + "#Intent;scheme=https;package=" + PACKAGE +
+          ";S.browser_fallback_url=" + encodeURIComponent(store) + ";end";
+        open.hidden = false;
+      }
+
+      var copy = document.getElementById("copy");
+      copy.addEventListener("click", function () {
+        var done = function () {
+          copy.textContent = "Copied!";
+          setTimeout(function () { copy.textContent = "Copy code"; }, 1500);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(shown).then(done, function () { window.prompt("Copy this code:", shown); });
+        } else {
+          window.prompt("Copy this code:", shown);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

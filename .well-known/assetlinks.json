@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.vsterstudio.drop",
+      "sha256_cert_fingerprints": [
+        "07:63:6C:CC:91:0B:46:6D:84:16:D2:8B:2E:A5:7B:A3:E5:B6:BB:C3:E4:99:87:78:D0:9F:0D:CE:CB:16:5F:F4",
+        "4D:11:2D:94:7B:62:FB:4F:66:90:BD:64:78:C7:A2:64:D1:B1:9A:D7:E5:9E:D8:6D:A6:69:3A:EB:29:26:56:01"
+      ]
+    }
+  }
+]
