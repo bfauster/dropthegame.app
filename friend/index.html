@@ -93,7 +93,10 @@
     (function () {
       var ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
       var PACKAGE = "com.vsterstudio.drop";
-      var raw = (new URLSearchParams(location.search).get("c") || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+      var fromQuery = new URLSearchParams(location.search).get("c");
+      var raw = (fromQuery || new URLSearchParams(location.hash.slice(1)).get("c") || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+      // Code aus ?c= hinter # verschieben: der Besucherzähler sendet location.search immer mit, den #-Teil nie.
+      if (fromQuery !== null && history.replaceState) history.replaceState(null, "", location.pathname + "#c=" + raw);
       var valid = raw.length === 6 && raw.split("").every(function (ch) { return ALPHABET.indexOf(ch) >= 0; });
       document.getElementById(valid ? "valid" : "invalid").hidden = false;
       if (!valid) return;
@@ -124,5 +127,9 @@
       });
     })();
   </script>
+  <!-- Besucherzähler GoatCounter: ohne Cookies, speichert keine IP-Adressen (siehe /privacy/, Abschnitt 6). -->
+  <!-- Nur den Pfad zählen, nie den Freundescode aus ?c= oder dem Seitentitel. -->
+  <script>window.goatcounter = { path: "/friend/", title: "DROP! – Add me as a friend" };</script>
+  <script data-goatcounter="https://dropthegame.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
