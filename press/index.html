@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DROP! – Press Kit</title>
+  <meta name="description" content="Press kit for DROP! – Skydiving Game: factsheet, description, screenshots, logos, trailer and contact.">
+  <meta name="theme-color" content="#1d6fd1">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/icon-32.png">
+  <link rel="apple-touch-icon" href="../img/icon-180.png">
+  <meta property="og:title" content="DROP! – Press Kit">
+  <meta property="og:description" content="Factsheet, screenshots, logos and trailer for DROP! – Skydiving Game.">
+  <meta property="og:image" content="https://dropthegame.app/press/files/drop_banner_1024x500.png">
+  <meta property="og:url" content="https://dropthegame.app/press/">
+  <meta property="og:type" content="website">
+  <style>
+    /* Pressekit: gleiche Farben wie die Startseite */
+    :root {
+      --sky-top: #1556c4;
+      --sky-mid: #3f97ea;
+      --sky-low: #bfe4ff;
+      --navy: #0f2a5c;
+      --navy-soft: rgba(15, 42, 92, 0.88);
+      --gold: #ffd23a;
+      --green: #2bb24c;
+      --green-dark: #1d7f35;
+      --white: #ffffff;
+      --text-soft: rgba(255, 255, 255, 0.88);
+      --line: rgba(255, 255, 255, 0.14);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--white);
+      background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 45%, var(--sky-low) 100%);
+      background-color: var(--sky-mid);
+      background-attachment: fixed;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: var(--gold); }
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+
+    /* Kopfzeile */
+    .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 0 8px; flex-wrap: wrap; }
+    .top a.home { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 900; font-size: 20px; }
+    .top a.home img { width: 52px; height: 52px; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25)); }
+    .top nav { display: flex; gap: 8px; flex-wrap: wrap; }
+    .top nav a { padding: 6px 14px; border-radius: 999px; background: rgba(15, 42, 92, 0.75); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; }
+
+    /* Titel */
+    .hero { text-align: center; padding: 28px 0 8px; }
+    .hero img { width: min(420px, 86vw); margin: 0 auto; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25)); }
+    .hero h1 {
+      margin-top: 10px;
+      font-size: clamp(32px, 7vw, 54px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 4px 0 rgba(15, 42, 92, 0.45);
+    }
+    .hero p { margin-top: 6px; font-size: 18px; font-weight: 700; }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 5px 0 var(--green-dark);
+      color: #fff;
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .btn small { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0; text-transform: none; opacity: 0.9; }
+
+    /* Inhaltsverzeichnis */
+    .toc { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 24px 0 8px; }
+    .toc a { padding: 6px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.92); color: var(--navy); font-weight: 700; font-size: 14px; text-decoration: none; }
+
+    /* Karten */
+    .card { background: var(--navy-soft); border: 2px solid var(--line); border-radius: 20px; padding: 22px 22px 24px; margin-top: 18px; }
+    .card h2 { font-size: 22px; font-weight: 900; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; scroll-margin-top: 16px; }
+    .card h3 { font-size: 17px; font-weight: 800; margin: 16px 0 4px; }
+    .card p, .card li { color: var(--text-soft); }
+    .card p + p { margin-top: 10px; }
+    .card ul { padding-left: 20px; }
+    .card li + li { margin-top: 4px; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 0 18px; }
+    @media (min-width: 800px) { .grid-2 { grid-template-columns: 320px 1fr; } .grid-2 > .card { margin-top: 18px; } }
+
+    /* Factsheet */
+    dl.facts dt { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-top: 12px; }
+    dl.facts dt:first-child { margin-top: 0; }
+    dl.facts dd { color: var(--white); }
+
+    /* Bilder */
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; margin-top: 6px; }
+    .gallery a { display: block; text-decoration: none; color: var(--text-soft); font-size: 13px; text-align: center; }
+    .gallery img { width: 100%; border-radius: 14px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); margin-bottom: 6px; }
+    .assets { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 6px; }
+    .asset { background: rgba(255, 255, 255, 0.06); border-radius: 14px; padding: 12px; text-align: center; font-size: 14px; color: var(--text-soft); }
+    .asset img { margin: 0 auto 8px; max-height: 160px; width: auto; border-radius: 10px; }
+    .asset .checker { background: repeating-conic-gradient(#2a3d6b 0% 25%, #22335c 0% 50%) 50% / 20px 20px; border-radius: 10px; padding: 10px; margin-bottom: 8px; }
+    .asset .checker img { margin-bottom: 0; }
+    .asset a { font-weight: 700; }
+
+    video { display: block; width: 100%; height: auto; border-radius: 16px; background: var(--navy); object-fit: contain; }
+    video.portrait { aspect-ratio: 9 / 16; max-width: 300px; margin: 0 auto; }
+    video.landscape { aspect-ratio: 16 / 9; }
+    .videos { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; }
+    @media (min-width: 760px) { .videos { grid-template-columns: 1fr 2fr; } }
+    .videos p { margin-top: 6px; font-size: 14px; text-align: center; }
+
+    footer { margin-top: 48px; padding: 24px 0 36px; text-align: center; color: var(--navy); font-size: 15px; }
+    footer a { color: var(--navy); font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <a class="home" href="../"><img src="../img/logo.webp" width="432" height="432" alt="">DROP!</a>
+      <nav>
+        <a href="../">Home</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+
+    <header class="hero">
+      <img src="thumb/drop_wordmark.png" width="480" height="160" alt="DROP! logo">
+      <h1>Press Kit</h1>
+      <p>Everything you need to write about or make videos of DROP!</p>
+      <a class="btn" href="drop-presskit.zip" download>Download all images<small>ZIP · 5.6 MB · screenshots, logos, icon, banner</small></a>
+    </header>
+
+    <nav class="toc" aria-label="Sections">
+      <a href="#factsheet">Factsheet</a>
+      <a href="#description">Description</a>
+      <a href="#features">Features</a>
+      <a href="#videos">Videos</a>
+      <a href="#images">Screenshots</a>
+      <a href="#logos">Logos</a>
+      <a href="#developer">Developer</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="grid-2">
+      <section class="card">
+        <h2 id="factsheet">Factsheet</h2>
+        <dl class="facts">
+          <dt>Title</dt>
+          <dd>DROP! – Skydiving Game</dd>
+          <dt>Developer</dt>
+          <dd>vster Studio (Benjamin Fauster)</dd>
+          <dt>Based in</dt>
+          <dd>Styria, Austria</dd>
+          <dt>Release date</dt>
+          <dd>Coming soon</dd>
+          <dt>Platforms</dt>
+          <dd>Android, iOS</dd>
+          <dt>Genre</dt>
+          <dd>Arcade · Skydiving · One-tap reaction</dd>
+          <dt>Price</dt>
+          <dd>Free to play with ads, optional one-time “Remove Ads” purchase</dd>
+          <dt>Language</dt>
+          <dd>English</dd>
+          <dt>Engine</dt>
+          <dd>Godot</dd>
+          <dt>Website</dt>
+          <dd><a href="https://dropthegame.app/">dropthegame.app</a></dd>
+          <dt>Press contact</dt>
+          <dd><a href="mailto:press@dropthegame.app">press@dropthegame.app</a></dd>
+        </dl>
+      </section>
+
+      <div>
+        <section class="card">
+          <h2 id="description">Description</h2>
+          <p><strong>Short:</strong> DROP! is a one-tap skydiving race: jump on GO, fall as long as you dare, open your parachute late and land first.</p>
+          <p>Four jumpers wait on floating platforms high above the ground. READY … SET … and the moment GO! fires, you tap to jump – too early and you are out for a false start. Then the real test begins: the longer you free-fall, the faster you are, but open your parachute too late and you crash. Every jump is a split-second duel of nerve and timing against three rivals.</p>
+          <p>Win jumps to score points, finish rounds of five jumps on top to get promoted, and climb six leagues all the way up to the final showdown with the KING of the Sky.</p>
+        </section>
+
+        <section class="card">
+          <h2 id="features">Features</h2>
+          <ul>
+            <li><strong>One tap to jump, one tap to open</strong> – easy to learn, hard to master.</li>
+            <li><strong>Career mode:</strong> six leagues, promotion and relegation, Easy, Hard and Extreme difficulty.</li>
+            <li><strong>Daily Drop:</strong> a new challenge every day with twists like fog, gusts or night drops, plus an online leaderboard.</li>
+            <li><strong>Training:</strong> practice any height and analyze every jump to find the perfect opening.</li>
+            <li><strong>Your jumper:</strong> hairstyles, glasses, hats and parachute skins – earn crowns and unlock exclusive items.</li>
+            <li><strong>Progression:</strong> player levels, achievements and personal bests.</li>
+            <li><strong>Play with friends</strong> via friend codes – and fully playable offline.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <section class="card">
+      <h2 id="videos">Videos</h2>
+      <div class="videos">
+        <div>
+          <video class="portrait" controls playsinline preload="none" poster="thumb/drop_king.jpg" width="1080" height="1920" aria-label="DROP! teaser, portrait">
+            <source src="../video/teaser.mp4" type="video/mp4">
+          </video>
+          <p>Teaser, portrait 9:16 · <a href="../video/teaser.mp4" download>Download MP4 (16 MB)</a></p>
+        </div>
+        <div>
+          <video class="landscape" controls playsinline preload="none" poster="../img/teaser-landscape.jpg" width="1920" height="1080" aria-label="DROP! teaser, landscape">
+            <source src="../video/teaser-landscape.mp4" type="video/mp4">
+          </video>
+          <p>Teaser, landscape 16:9 · <a href="../video/teaser-landscape.mp4" download>Download MP4 (16 MB)</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="images">Screenshots</h2>
+      <p>Click an image to download the full-size PNG (1080 × 2152).</p>
+      <div class="gallery">
+        <a href="files/screenshots/drop_go.png" download><img src="thumb/drop_go.jpg" width="360" height="718" loading="lazy" alt="READY, SET, GO: four jumpers on their platforms">Start on GO!</a>
+        <a href="files/screenshots/drop_chute.png" download><img src="thumb/drop_chute.jpg" width="360" height="718" loading="lazy" alt="Parachutes open during the descent">Open late</a>
+        <a href="files/screenshots/drop_king.png" download><img src="thumb/drop_king.jpg" width="360" height="718" loading="lazy" alt="Perfect jump against the KING of the Sky">KING of the Sky</a>
+        <a href="files/screenshots/drop_promoted.png" download><img src="thumb/drop_promoted.jpg" width="360" height="718" loading="lazy" alt="League result: promoted">Promoted!</a>
+        <a href="files/screenshots/drop_daily.png" download><img src="thumb/drop_daily.jpg" width="360" height="718" loading="lazy" alt="Daily Drop challenge">Daily Drop</a>
+        <a href="files/screenshots/drop_creator.png" download><img src="thumb/drop_creator.jpg" width="360" height="718" loading="lazy" alt="Customize your jumper">Your jumper</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="logos">Logos &amp; icon</h2>
+      <div class="assets">
+        <div class="asset">
+          <div class="checker"><img src="thumb/drop_wordmark.png" width="480" height="160" loading="lazy" alt="DROP! wordmark"></div>
+          Wordmark, transparent<br><a href="files/drop_wordmark_transparent.png" download>PNG · 2172 × 724</a>
+        </div>
+        <div class="asset">
+          <img src="thumb/drop_logo.jpg" width="360" height="360" loading="lazy" alt="DROP! logo with parachute">
+          Logo with parachute<br><a href="files/drop_logo.png" download>PNG · 1254 × 1254</a>
+        </div>
+        <div class="asset">
+          <img src="files/drop_icon_512.png" width="160" height="160" loading="lazy" alt="DROP! app icon">
+          App icon<br><a href="files/drop_icon_512.png" download>PNG · 512 × 512</a>
+        </div>
+        <div class="asset">
+          <img src="thumb/drop_banner.jpg" width="512" height="250" loading="lazy" alt="DROP! banner: Open late. Land first.">
+          Banner<br><a href="files/drop_banner_1024x500.png" download>PNG · 1024 × 500</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="developer">About the developer</h2>
+      <p><strong>vster Studio</strong> is the indie studio of Benjamin Fauster from St. Margarethen an der Raab in Styria, Austria. DROP! is designed, programmed and published by the studio and built with the open-source Godot engine.</p>
+
+      <h3>Using our material</h3>
+      <p>Press, bloggers, streamers and video creators are welcome to use the screenshots, logos, trailer and their own gameplay footage of DROP! when covering the game – including in monetized videos and streams. A link to <a href="https://dropthegame.app/">dropthegame.app</a> is appreciated.</p>
+    </section>
+
+    <section class="card">
+      <h2 id="contact">Contact</h2>
+      <p>Questions, interviews or review access: <a href="mailto:press@dropthegame.app">press@dropthegame.app</a></p>
+      <p>Player support: <a href="mailto:support@dropthegame.app">support@dropthegame.app</a></p>
+    </section>
+
+    <footer>
+      <a href="../">Home</a> · <a href="../privacy/">Privacy</a> · <a href="../imprint/">Imprint</a>
+      <p>&copy; 2026 vster Studio</p>
+    </footer>
+  </div>
+  <!-- Besucherzähler GoatCounter: ohne Cookies, speichert keine IP-Adressen (siehe /privacy/, Abschnitt 6). -->
+  <script data-goatcounter="https://dropthegame.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
