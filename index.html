@@ -3,16 +3,79 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DROP! – Rule the Sky</title>
-  <meta name="description" content="DROP! is a skydiving arcade game: jump on GO, fall as long as you dare, open late and land first. Climb six leagues and beat the KING of the Sky.">
+  <title>DROP! – Skydiving Game for Android &amp; iOS</title>
+  <meta name="description" content="DROP! is a free skydiving arcade game: jump on GO, fall as long as you dare, open your parachute late and land first. Climb six leagues and beat the KING of the Sky.">
+  <link rel="canonical" href="https://dropthegame.app/">
   <meta name="theme-color" content="#1d6fd1">
   <link rel="icon" type="image/png" sizes="32x32" href="img/icon-32.png">
   <link rel="apple-touch-icon" href="img/icon-180.png">
-  <meta property="og:title" content="DROP! – Rule the Sky">
+  <link rel="preload" as="image" href="img/logo.webp" fetchpriority="high">
+  <link rel="preconnect" href="https://gc.zgo.at" crossorigin>
+  <meta property="og:site_name" content="DROP!">
+  <meta property="og:title" content="DROP! – Skydiving Game">
   <meta property="og:description" content="Jump. Fall. Open late. Land first. A skydiving arcade game for Android and iOS.">
-  <meta property="og:image" content="https://dropthegame.app/img/icon-512.png">
+  <meta property="og:image" content="https://dropthegame.app/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="DROP! – Open late. Land first. Jumpers with parachutes and the KING of the Sky.">
   <meta property="og:url" content="https://dropthegame.app/">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://dropthegame.app/#website",
+        "name": "DROP!",
+        "alternateName": "DROP! – Skydiving Game",
+        "url": "https://dropthegame.app/"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://dropthegame.app/#org",
+        "name": "vster Studio",
+        "url": "https://dropthegame.app/",
+        "email": "support@dropthegame.app",
+        "logo": "https://dropthegame.app/img/icon-512.png"
+      },
+      {
+        "@type": "VideoGame",
+        "name": "DROP!",
+        "alternateName": "DROP! – Skydiving Game",
+        "url": "https://dropthegame.app/",
+        "description": "A skydiving arcade game: jump on GO, fall as long as you dare, open your parachute late and land first. Climb six leagues, play the Daily Drop and beat the KING of the Sky.",
+        "image": "https://dropthegame.app/img/og-image.jpg",
+        "genre": ["Arcade", "Sports", "Casual"],
+        "gamePlatform": ["Android", "iOS"],
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Android, iOS",
+        "playMode": "SinglePlayer",
+        "inLanguage": "en",
+        "author": { "@id": "https://dropthegame.app/#org" },
+        "publisher": { "@id": "https://dropthegame.app/#org" },
+        "screenshot": [
+          "https://dropthegame.app/img/shot-1.webp",
+          "https://dropthegame.app/img/shot-2.webp",
+          "https://dropthegame.app/img/shot-3.webp",
+          "https://dropthegame.app/img/shot-4.webp",
+          "https://dropthegame.app/img/shot-5.webp"
+        ],
+        "trailer": {
+          "@type": "VideoObject",
+          "name": "DROP! – Teaser",
+          "description": "Gameplay teaser of the skydiving arcade game DROP!.",
+          "thumbnailUrl": "https://dropthegame.app/img/teaser-landscape.jpg",
+          "contentUrl": "https://dropthegame.app/video/teaser-landscape.mp4",
+          "uploadDate": "2026-10-29",
+          "duration": "PT28S"
+        }
+      }
+    ]
+  }
+  </script>
   <style>
     :root {
       --sky-top: #1556c4;
@@ -214,6 +277,28 @@
       color: var(--navy);
       font-size: 15px;
     }
+    /* Kurzbeschreibung unter dem Slogan (auch für Suchmaschinen) */
+    .intro {
+      max-width: 620px;
+      margin: 20px auto 0;
+      font-size: 17px;
+      line-height: 1.55;
+      font-weight: 600;
+      text-shadow: 0 1px 2px rgba(15, 42, 92, 0.5);
+    }
+
+    /* FAQ */
+    .faq { max-width: 760px; margin: 0 auto; display: grid; gap: 10px; }
+    .faq details {
+      background: var(--navy-soft);
+      border-radius: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.12);
+      padding: 14px 18px;
+    }
+    .faq summary { cursor: pointer; font-weight: 800; font-size: 17px; }
+    .faq summary::marker { color: var(--gold); }
+    .faq p { margin-top: 8px; line-height: 1.5; color: rgba(255, 255, 255, 0.88); }
+
     footer .links { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; font-weight: 700; }
   </style>
 </head>
@@ -227,15 +312,17 @@
 
   <div class="wrap">
     <header class="hero">
-      <img class="hero-logo" src="img/logo.webp" width="432" height="432" alt="DROP! logo with a colorful parachute">
+      <img class="hero-logo" src="img/logo.webp" width="432" height="432" fetchpriority="high" alt="DROP! – Skydiving Game logo with a colorful parachute">
       <h1 class="headline">Rule the <span>Sky</span></h1>
       <p class="tagline">Jump. Fall. Open late. <span>Land first.</span></p>
+      <p class="intro">DROP! is a free skydiving arcade game for Android and iOS. Race three rivals from the jump platform, free fall as long as you dare and open your parachute at the last moment to land first.</p>
       <div class="cta">
         <span class="btn btn-primary">Soon on Android &amp; <span style="text-transform: none">iOS</span></span>
         <a class="btn btn-secondary" href="#teaser">Watch teaser</a>
       </div>
     </header>
 
+    <main>
     <h2 class="section-title" id="teaser">Watch the teaser</h2>
     <section class="teaser">
       <video class="portrait" controls playsinline preload="none" poster="img/shot-2.webp" width="1080" height="1920" aria-label="DROP! teaser video">
@@ -285,6 +372,27 @@
         <p>Practice any height, analyze every jump and find your perfect opening.</p>
       </div>
     </div>
+
+    <h2 class="section-title" id="faq">FAQ</h2>
+    <div class="faq">
+      <details>
+        <summary>Is DROP! free to play?</summary>
+        <p>Yes. DROP! is free to download and play. It shows ads between rounds, and a one-time “Remove Ads” purchase turns them off.</p>
+      </details>
+      <details>
+        <summary>Can I play offline?</summary>
+        <p>Yes. Career, Training and the Daily Drop work without an internet connection. Only online leaderboards and friends need a connection.</p>
+      </details>
+      <details>
+        <summary>When is DROP! coming out?</summary>
+        <p>DROP! is coming soon to Google Play and the App Store. The store links will appear right here on this page.</p>
+      </details>
+      <details>
+        <summary>Who makes DROP!?</summary>
+        <p>DROP! is made by vster Studio, an independent game developer from Austria. Press and creators find everything in the <a href="press/">press kit</a>.</p>
+      </details>
+    </div>
+    </main>
 
     <footer>
       <div class="links">
