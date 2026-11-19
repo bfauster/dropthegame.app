@@ -11,6 +11,28 @@
   <link rel="apple-touch-icon" href="img/icon-180.png">
   <link rel="preload" as="image" href="img/logo.webp" fetchpriority="high">
   <link rel="preconnect" href="https://gc.zgo.at" crossorigin>
+  <script>
+    // Store-Badges: Gerät (Android / iPhone+iPad / sonstiges) und EU ja/nein als Klassen am <html>.
+    // EU wird nur über die Zeitzone des Geräts erkannt (keine IP-Abfrage, nichts wird gesendet).
+    // In der EU ist DROP! im App Store noch nicht sichtbar (DSA-Prüfung) → dort "Soon on iOS".
+    // Ohne JavaScript oder bei unbekannter Zeitzone gilt: beide Knöpfe, iOS als "Soon".
+    (function () {
+      var c = document.documentElement.classList;
+      var ua = navigator.userAgent || "";
+      if (/Android/i.test(ua)) c.add("dev-android");
+      else if (/iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) c.add("dev-ios");
+      var eu = ["Europe/Vienna", "Europe/Brussels", "Europe/Sofia", "Europe/Zagreb", "Europe/Nicosia", "Asia/Nicosia",
+        "Asia/Famagusta", "Europe/Prague", "Europe/Copenhagen", "Europe/Tallinn", "Europe/Helsinki", "Europe/Mariehamn",
+        "Europe/Paris", "Europe/Berlin", "Europe/Busingen", "Europe/Athens", "Europe/Budapest", "Europe/Dublin", "Europe/Rome",
+        "Europe/Riga", "Europe/Vilnius", "Europe/Luxembourg", "Europe/Malta", "Europe/Amsterdam", "Europe/Warsaw",
+        "Europe/Lisbon", "Atlantic/Madeira", "Atlantic/Azores", "Europe/Bucharest", "Europe/Bratislava", "Europe/Ljubljana",
+        "Europe/Madrid", "Africa/Ceuta", "Atlantic/Canary", "Europe/Stockholm", "Indian/Reunion", "Indian/Mayotte",
+        "America/Guadeloupe", "America/Martinique", "America/Cayenne", "America/Marigot"];
+      var tz = "";
+      try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+      if (tz && eu.indexOf(tz) < 0) c.add("ios-live");
+    })();
+  </script>
   <meta property="og:site_name" content="DROP!">
   <meta property="og:title" content="DROP! – Skydiving Game">
   <meta property="og:description" content="Jump. Fall. Open late. Land first. A skydiving arcade game for Android and iOS.">
@@ -168,8 +190,25 @@
     .tagline span { color: var(--gold); }
     .cta { margin-top: 28px; display: flex; gap: 14px; justify-content: center; align-items: center; flex-wrap: wrap; }
     /* Originales Google-Play-Badge (PNG mit transparentem Rand) – nicht einfärben oder verändern. */
-    .play-badge { display: block; margin: -12px -8px; }
+    .play-badge { display: block; margin: -14px -8px; }
     .play-badge img { height: 84px; width: auto; }
+    /* Originales App-Store-Badge (SVG ohne Rand), gleich hoch wie das sichtbare Play-Badge. */
+    .appstore-badge { display: block; }
+    .appstore-badge img { height: 56px; width: auto; }
+    .store-alt { margin-top: 14px; font-size: 16px; font-weight: 700; opacity: 0.9; }
+    .store-alt a { color: inherit; }
+    /* Sichtbarkeit: iOS-Badge nur außerhalb der EU, "Soon on iOS" nur in der EU.
+       Android-Gerät → nur Play-Badge groß, iPhone/iPad → nur iOS groß; das andere als kleiner Hinweis darunter. */
+    .appstore-badge, .store-alt, .ios-live-text { display: none; }
+    .ios-live .appstore-badge { display: block; }
+    .ios-live .ios-soon { display: none; }
+    .ios-live .ios-live-text { display: inline; }
+    .ios-live .ios-soon-text { display: none; }
+    .dev-android .appstore-badge, .dev-android .ios-soon, .dev-ios .play-badge { display: none; }
+    .dev-android .store-alt, .dev-ios .store-alt { display: block; }
+    .store-alt span { display: none; }
+    .dev-android .alt-ios-soon, .dev-android.ios-live .alt-ios-live, .dev-ios .alt-play { display: inline; }
+    .dev-android.ios-live .alt-ios-soon { display: none; }
     .btn {
       display: inline-block;
       padding: 14px 28px;
@@ -378,9 +417,15 @@
       <p class="intro">DROP! is a free skydiving arcade game for Android and iOS. Race three rivals from the jump platform, free fall as long as you dare and open your parachute at the last moment to land first.</p>
       <div class="cta">
         <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.vsterstudio.drop"><img src="img/google-play-badge.png" width="646" height="250" alt="Get it on Google Play"></a>
-        <span class="btn btn-primary">Soon on <span style="text-transform: none">iOS</span></span>
+        <a class="appstore-badge" href="https://apps.apple.com/app/id6828981696"><img src="img/app-store-badge.svg" width="120" height="40" alt="Download on the App Store"></a>
+        <span class="btn btn-primary ios-soon">Soon on <span style="text-transform: none">iOS</span></span>
         <a class="btn btn-secondary" href="#teaser">Watch teaser</a>
       </div>
+      <p class="store-alt">
+        <span class="alt-ios-soon">iOS version coming soon.</span>
+        <span class="alt-ios-live">Also on the <a href="https://apps.apple.com/app/id6828981696">App Store</a>.</span>
+        <span class="alt-play">Also on <a href="https://play.google.com/store/apps/details?id=com.vsterstudio.drop">Google Play</a>.</span>
+      </p>
     </header>
 
     <main>
@@ -457,7 +502,7 @@
       </details>
       <details>
         <summary>When is DROP! coming out?</summary>
-        <p>DROP! is out now on <a href="https://play.google.com/store/apps/details?id=com.vsterstudio.drop">Google Play</a> and coming soon to the App Store.</p>
+        <p>DROP! is out now on <a href="https://play.google.com/store/apps/details?id=com.vsterstudio.drop">Google Play</a><span class="ios-soon-text"> and coming soon to the App Store</span><span class="ios-live-text"> and the <a href="https://apps.apple.com/app/id6828981696">App Store</a></span>.</p>
       </details>
       <details>
         <summary>Who makes DROP!?</summary>
